@@ -3,65 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Sistem Absensi Sekolah</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Register - KelasKu</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 </head>
-<body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">Register</div>
-                    <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
+<body class="bg-surface-50">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <div class="text-center">
+                <img class="mx-auto h-24 w-auto" src="/images/logo.svg" alt="KelasKu Logo">
+                <h2 class="mt-6 text-3xl font-bold text-gray-900">Buat Akun Baru</h2>
+                <p class="mt-2 text-sm text-gray-600">Sistem Absensi Sekolah</p>
+            </div>
+            
+            @if ($errors->any())
+                <div class="rounded-md bg-danger-50 p-4 mt-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <span class="material-icons-round text-danger-400">error_outline</span>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-danger-800">Terdapat beberapa kesalahan:</h3>
+                            <div class="mt-2 text-sm text-danger-700">
+                                <ul class="list-disc pl-5 space-y-1">
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
-
-                        <form method="POST" action="{{ route('register') }}">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required autofocus>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="role" class="form-label">Role</label>
-                                <select class="form-select" id="role" name="role" required>
-                                    <option value="murid">Murid</option>
-                                    <option value="guru">Guru</option>
-                                    <option value="tata usaha">Tata Usaha</option>
-                                    <option value="super admin">Super Admin</option>
-                                </select>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Register</button>
-                            </div>
-                        </form>
-                        <div class="mt-3 text-center">
-                            <p>Sudah punya akun? <a href="{{ route('login') }}">Login</a></p>
                         </div>
                     </div>
                 </div>
+            @endif
+
+            <form class="mt-8 space-y-6" method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="rounded-md shadow-sm space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama</label>
+                        <div class="flex items-center">
+                            <span class="material-icons-round text-gray-400 absolute ml-3">person</span>
+                            <input id="name" name="name" type="text" autocomplete="name" required 
+                                class="appearance-none rounded-md relative block w-full px-12 py-3 border border-gray-300 
+                                placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 
+                                focus:border-primary-500 focus:z-10" 
+                                placeholder="Nama Lengkap" value="{{ old('name') }}">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <div class="flex items-center">
+                            <span class="material-icons-round text-gray-400 absolute ml-3">email</span>
+                            <input id="email" name="email" type="email" autocomplete="email" required 
+                                class="appearance-none rounded-md relative block w-full px-12 py-3 border border-gray-300 
+                                placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 
+                                focus:border-primary-500 focus:z-10" 
+                                placeholder="Email" value="{{ old('email') }}">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="flex items-center">
+                            <span class="material-icons-round text-gray-400 absolute ml-3">lock</span>
+                            <input id="password" name="password" type="password" autocomplete="new-password" required 
+                                class="appearance-none rounded-md relative block w-full px-12 py-3 border border-gray-300 
+                                placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 
+                                focus:border-primary-500 focus:z-10" 
+                                placeholder="Password">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
+                        <div class="flex items-center">
+                            <span class="material-icons-round text-gray-400 absolute ml-3">lock</span>
+                            <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password" required 
+                                class="appearance-none rounded-md relative block w-full px-12 py-3 border border-gray-300 
+                                placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary-500 
+                                focus:border-primary-500 focus:z-10" 
+                                placeholder="Konfirmasi Password">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                        <div class="flex items-center">
+                            <span class="material-icons-round text-gray-400 absolute ml-3">badge</span>
+                            <select id="role" name="role" required 
+                                class="appearance-none rounded-md relative block w-full px-12 py-3 border border-gray-300 
+                                text-gray-900 focus:outline-none focus:ring-primary-500 
+                                focus:border-primary-500 focus:z-10">
+                                <option value="murid">Murid</option>
+                                <option value="guru">Guru</option>
+                                <option value="tata usaha">Tata Usaha</option>
+                                <option value="super admin">Super Admin</option>
+                            </select>
+                            <span class="material-icons-round text-gray-400 absolute right-3 pointer-events-none">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" 
+                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent 
+                        text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 
+                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 
+                        transition-colors duration-200">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <span class="material-icons-round text-primary-300 group-hover:text-primary-200">how_to_reg</span>
+                        </span>
+                        Daftar
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="text-sm text-gray-600">
+                    Sudah punya akun? 
+                    <a href="{{ route('login') }}" class="font-medium text-primary-600 hover:text-primary-500">
+                        Masuk sekarang
+                    </a>
+                </p>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

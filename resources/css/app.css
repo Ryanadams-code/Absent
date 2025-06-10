@@ -1,11 +1,338 @@
-@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* Material Design 3 Custom Styles */
+@layer components {
+    /* Ripple effect for buttons */
+    .ripple-effect {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.3);
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+        animation: ripple-animation 0.6s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    @keyframes ripple-animation {
+        from {
+            transform: scale(0);
+            opacity: 0.5;
+        }
+        to {
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+    
+    /* Material Design 3 Elevation Shadows */
+    .shadow-elevation-1 {
+        @apply shadow-sm;
+    }
+    
+    .shadow-elevation-2 {
+        @apply shadow;
+    }
+    
+    .shadow-elevation-3 {
+        @apply shadow-md;
+    }
+    
+    .shadow-elevation-4 {
+        @apply shadow-lg;
+    }
+    
+    .shadow-elevation-5 {
+        @apply shadow-xl;
+    }
+}
+
+/* Material Design 3 inspired custom components */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500;
+  }
+  
+  .btn-success {
+    @apply bg-success-600 text-white hover:bg-success-700 focus:ring-success-500;
+  }
+  
+  .btn-danger {
+    @apply bg-danger-600 text-white hover:bg-danger-700 focus:ring-danger-500;
+  }
+  
+  .btn-warning {
+    @apply bg-warning-600 text-white hover:bg-warning-700 focus:ring-warning-500;
+  }
+  
+  .btn-info {
+    @apply bg-info-600 text-white hover:bg-info-700 focus:ring-info-500;
+  }
+  
+  .btn-sm {
+    @apply px-2 py-1 text-xs;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden;
+  }
+  
+  .card-header {
+    @apply px-4 py-3 border-b border-gray-200 bg-gray-50;
+  }
+  
+  .card-body {
+    @apply p-4;
+  }
+  
+  /* Forms */
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  
+  .form-control {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
+  }
+  
+  .form-select {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
+  }
+  
+  .form-check {
+    @apply relative flex items-start;
+  }
+  
+  .form-check-input {
+    @apply h-4 w-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500;
+  }
+  
+  .form-check-label {
+    @apply ml-2 block text-sm text-gray-700;
+  }
+  
+  /* Alerts */
+  .alert {
+    @apply p-4 mb-4 rounded-md;
+  }
+  
+  .alert-success {
+    @apply bg-success-100 text-success-800;
+  }
+  
+  .alert-danger {
+    @apply bg-danger-100 text-danger-800;
+  }
+  
+  .alert-warning {
+    @apply bg-warning-100 text-warning-800;
+  }
+  
+  .alert-info {
+    @apply bg-info-100 text-info-800;
+  }
+  
+  /* Tables - Material Design 3 */
+  .table {
+    @apply min-w-full divide-y divide-surface-200 rounded-lg overflow-hidden;
+  }
+  
+  .table th {
+    @apply px-6 py-3 bg-surface-50 text-left text-xs font-medium text-gray-600 uppercase tracking-wider;
+  }
+  
+  .table td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700;
+  }
+  
+  .table tr {
+    @apply bg-white;
+  }
+  
+  .table tr:nth-child(even) {
+    @apply bg-surface-50;
+  }
+  
+  .table-bordered {
+    @apply border border-surface-200;
+  }
+  
+  .table-bordered th,
+  .table-bordered td {
+    @apply border border-surface-200;
+  }
+  
+  .table-hover tr:hover {
+    @apply bg-primary-50;
+  }
+  
+  .table-responsive {
+    @apply overflow-x-auto;
+  }
+  
+  .table-light {
+    @apply bg-surface-50;
+  }
+  
+  /* Badges - Material Design 3 */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-primary {
+    @apply bg-primary-100 text-primary-800;
+  }
+  
+  .badge-secondary {
+    @apply bg-secondary-100 text-secondary-800;
+  }
+  
+  .badge-success {
+    @apply bg-success-100 text-success-800;
+  }
+  
+  .badge-danger {
+    @apply bg-danger-100 text-danger-800;
+  }
+  
+  .badge-warning {
+    @apply bg-warning-100 text-warning-800;
+  }
+  
+  .badge-info {
+    @apply bg-info-100 text-info-800;
+  }
+  
+  /* Navbar - Material Design 3 */
+  .navbar {
+    @apply bg-surface-50 shadow-elevation-1 flex flex-wrap items-center justify-between py-3 px-4;
+  }
+  
+  .navbar-container {
+    @apply max-w-7xl mx-auto px-4;
+  }
+  
+  .navbar-dark {
+    @apply bg-primary-700 text-white;
+  }
+  
+  .navbar-brand {
+    @apply text-xl font-medium text-gray-900;
+  }
+  
+  .navbar-toggler {
+    @apply p-2 rounded-full text-gray-500 hover:text-gray-700 hover:bg-surface-200 focus:outline-none;
+  }
+  
+  .navbar-nav {
+    @apply flex flex-col pl-0 mb-0 list-none;
+  }
+  
+  .nav-item {
+    @apply px-2;
+  }
+  
+  .nav-link {
+    @apply px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-surface-200 transition-colors;
+  }
+  
+  .nav-link-active {
+    @apply bg-primary-100 text-primary-700;
+  }
+  
+  .dropdown-menu {
+    @apply origin-top-right absolute right-0 mt-2 w-56 rounded-lg shadow-elevation-3 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10;
+  }
+  
+  .dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-surface-100;
+  }
+  
+  .dropdown-divider {
+    @apply my-1 h-0 border-t border-gray-200;
+  }
+  
+  /* Pagination - Material Design 3 */
+  .pagination {
+    @apply flex justify-center mt-4;
+  }
+  
+  .page-item {
+    @apply inline-flex;
+  }
+  
+  .page-link {
+    @apply relative inline-flex items-center px-4 py-2 border border-surface-200 bg-white text-sm font-medium text-gray-700 hover:bg-surface-50;
+  }
+  
+  .page-item:first-child .page-link {
+    @apply rounded-l-lg;
+  }
+  
+  .page-item:last-child .page-link {
+    @apply rounded-r-lg;
+  }
+  
+  .page-item.active .page-link {
+    @apply z-10 bg-primary-600 border-primary-600 text-white;
+  }
+  
+  .page-item.disabled .page-link {
+    @apply bg-surface-50 text-gray-400 cursor-not-allowed;
+  }
+  
+  /* Material Design 3 Specific Components */
+  
+  /* Chips */
+  .chip {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-surface-100 text-gray-700;
+  }
+  
+  .chip-deletable {
+    @apply pr-1;
+  }
+  
+  .chip-icon {
+    @apply -ml-1 mr-1.5 text-gray-500;
+  }
+  
+  .chip-delete {
+    @apply ml-1 -mr-1 p-0.5 rounded-full text-gray-500 hover:text-gray-700 hover:bg-surface-200;
+  }
+  
+  /* FAB (Floating Action Button) */
+  .fab {
+    @apply fixed rounded-full shadow-elevation-3 flex items-center justify-center text-white bg-primary-600 hover:bg-primary-700 transition-colors;
+  }
+  
+  .fab-large {
+    @apply w-16 h-16;
+  }
+  
+  .fab-medium {
+    @apply w-14 h-14;
+  }
+  
+  .fab-small {
+    @apply w-10 h-10;
+  }
+  
+  .fab-bottom-right {
+    @apply bottom-6 right-6;
+  }
 }

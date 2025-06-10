@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Graduation Cap -->
+  <path d="M90 150 L170 110 L250 150 L170 190 Z" fill="#2e7d32" stroke="#1b5e20" stroke-width="8" />
+  
+  <!-- Book/Tablet Body -->
+  <path d="M90 150 L90 330 L250 330 L250 150" fill="#e8f5e9" stroke="#2e7d32" stroke-width="8" />
+  
+  <!-- Tassel -->
+  <path d="M90 150 L90 190 L70 230 L70 330 L110 330" fill="#4caf50" stroke="#2e7d32" stroke-width="8" />
+  
+  <!-- Face -->
+  <circle cx="130" cy="230" r="10" fill="#2e7d32" />
+  <circle cx="210" cy="230" r="10" fill="#2e7d32" />
+  <path d="M140 280 C160 300, 180 300, 200 280" fill="none" stroke="#2e7d32" stroke-width="8" stroke-linecap="round" />
+  
+  <!-- Text -->
+  <text x="270" y="240" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#2e7d32">KelasKu</text>
+</svg>
